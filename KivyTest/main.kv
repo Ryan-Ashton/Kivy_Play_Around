@@ -1,0 +1,107 @@
+<MDTabs>:
+    text_color_normal: (0,0,0,1)
+    text_color_active: (1,1,1,1)
+
+<ListItemWithCheckbox>:
+
+    IconLeftWidget:
+        icon: root.icon
+
+    RightCheckbox:
+
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "data/logo/kivy-icon-256.png"
+
+    MDLabel:
+        text: "Product Crawler Options"
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "WHat would you like to do?"
+        font_style: "Caption"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+
+
+
+Screen:
+
+    NavigationLayout:
+
+        ScreenManager:
+
+            Screen:
+                name: "competitor analysis"
+
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+
+
+                    MDToolbar:
+                        title: "Product Crawler"
+                        elevation: 10
+                        left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+
+                    
+                    MDTabs:
+                        id: android_tabs
+                        on_tab_switch: app.on_tab_switch(*args)
+
+                        Tab:
+                            text: "Competitor Analysis"
+
+                        Tab:
+                            text: "New Product Releases"
+                        Tab:
+                            text: "Refresh Details"
+
+                    
+                    ScrollView:
+                        MDList:
+                            id: scroll
+
+                    
+                    
+                    
+                    Widget:
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                id: content_drawer
